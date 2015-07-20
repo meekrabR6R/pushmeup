@@ -100,7 +100,7 @@ protected
     raise "The path to your pem file is not set. (APNS.pem = /path/to/cert.pem)" unless self.pem
     raise "The path to your pem file does not exist!" unless File.exist?(self.pem)
     
-    context      = OpenSSL::SSL::SSLContext.new
+    context      = OpenSSL::SSL::SSLContext.new(:TLSv1) #temp need to make optional
     context.cert = OpenSSL::X509::Certificate.new(File.read(self.pem))
     context.key  = OpenSSL::PKey::RSA.new(File.read(self.pem), self.pass)
 
@@ -115,7 +115,7 @@ protected
     raise "The path to your pem file is not set. (APNS.pem = /path/to/cert.pem)" unless self.pem
     raise "The path to your pem file does not exist!" unless File.exist?(self.pem)
     
-    context      = OpenSSL::SSL::SSLContext.new
+    context      = OpenSSL::SSL::SSLContext.new(:TLSv1) #temp need to make optional
     context.cert = OpenSSL::X509::Certificate.new(File.read(self.pem))
     context.key  = OpenSSL::PKey::RSA.new(File.read(self.pem), self.pass)
     
